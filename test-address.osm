@@ -1,0 +1,110 @@
+<?xml version='1.0' encoding='UTF-8'?>
+<osm version='0.6' upload='true' generator='JOSM'>
+  <bounds minlat='40.6830077' minlon='-73.9900097' maxlat='40.6834674' maxlon='-73.989476' origin='CGImap 0.3.3 (5383 thorn-02.openstreetmap.org)' />
+  <node id='42468449' timestamp='2009-12-22T17:56:20Z' uid='207745' user='NE2' visible='true' version='3' changeset='3429108' lat='40.6851003' lon='-73.994579' />
+  <node id='42468450' timestamp='2009-08-15T16:15:37Z' uid='147510' user='woodpeck_fixbot' visible='true' version='2' changeset='2155102' lat='40.684178' lon='-73.992192' />
+  <node id='42468453' timestamp='2009-08-15T16:15:37Z' uid='147510' user='woodpeck_fixbot' visible='true' version='3' changeset='2155102' lat='40.683319' lon='-73.989992' />
+  <node id='42479028' timestamp='2009-08-15T16:16:39Z' uid='147510' user='woodpeck_fixbot' visible='true' version='3' changeset='2155102' lat='40.682694' lon='-73.990424' />
+  <node id='42484013' timestamp='2009-08-15T16:17:10Z' uid='147510' user='woodpeck_fixbot' visible='true' version='3' changeset='2155102' lat='40.68459' lon='-73.989129' />
+  <node id='42497784' timestamp='2009-08-15T16:18:08Z' uid='147510' user='woodpeck_fixbot' visible='true' version='5' changeset='2155102' lat='40.687773' lon='-73.987' />
+  <node id='42498532' timestamp='2009-08-15T16:18:12Z' uid='147510' user='woodpeck_fixbot' visible='true' version='3' changeset='2155102' lat='40.685224' lon='-73.988712' />
+  <node id='42517472' timestamp='2009-08-15T16:19:22Z' uid='147510' user='woodpeck_fixbot' visible='true' version='3' changeset='2155102' lat='40.688408' lon='-73.986568' />
+  <node id='42523094' timestamp='2009-08-15T16:19:34Z' uid='147510' user='woodpeck_fixbot' visible='true' version='3' changeset='2155102' lat='40.689018' lon='-73.986155' />
+  <node id='42524883' timestamp='2013-11-04T03:11:22Z' uid='1721804' user='celosia' visible='true' version='4' changeset='18705826' lat='40.686504' lon='-73.987859' />
+  <node id='42527865' timestamp='2009-08-15T16:19:43Z' uid='147510' user='woodpeck_fixbot' visible='true' version='3' changeset='2155102' lat='40.687138' lon='-73.987429' />
+  <node id='42527868' timestamp='2013-11-04T03:11:22Z' uid='1721804' user='celosia' visible='true' version='6' changeset='18705826' lat='40.6858554' lon='-73.9882973' />
+  <node id='42527875' timestamp='2009-08-15T16:19:43Z' uid='147510' user='woodpeck_fixbot' visible='true' version='3' changeset='2155102' lat='40.683956' lon='-73.989556' />
+  <node id='2565408756' timestamp='2013-12-04T21:14:07Z' uid='1812841' user='ingalls_nycbuildings' visible='true' version='1' changeset='19279112' lat='40.6833585' lon='-73.989739'>
+    <tag k='addr:housenumber' v='225' />
+    <tag k='addr:postcode' v='11217' />
+    <tag k='addr:street' v='Hoyt Street' />
+  </node>
+  <node id='2565408758' timestamp='2013-12-04T21:14:07Z' uid='1812841' user='ingalls_nycbuildings' visible='true' version='1' changeset='19279112' lat='40.6832384' lon='-73.98982'>
+    <tag k='addr:housenumber' v='231' />
+    <tag k='addr:postcode' v='11217' />
+    <tag k='addr:street' v='Hoyt Street' />
+  </node>
+  <node id='2565409032' timestamp='2013-12-04T21:14:11Z' uid='1812841' user='ingalls_nycbuildings' visible='true' version='1' changeset='19279112' lat='40.6830747' lon='-73.9898436' />
+  <node id='2565409034' timestamp='2013-12-04T21:14:11Z' uid='1812841' user='ingalls_nycbuildings' visible='true' version='1' changeset='19279112' lat='40.6830902' lon='-73.9897083' />
+  <node id='2565409036' timestamp='2013-12-04T21:14:11Z' uid='1812841' user='ingalls_nycbuildings' visible='true' version='1' changeset='19279112' lat='40.6831078' lon='-73.9899283' />
+  <node id='2565409044' timestamp='2013-12-04T21:14:11Z' uid='1812841' user='ingalls_nycbuildings' visible='true' version='1' changeset='19279112' lat='40.6831288' lon='-73.9898071' />
+  <node id='2565409048' timestamp='2013-12-04T21:14:11Z' uid='1812841' user='ingalls_nycbuildings' visible='true' version='1' changeset='19279112' lat='40.683159' lon='-73.9896619' />
+  <node id='2565409057' timestamp='2013-12-04T21:14:11Z' uid='1812841' user='ingalls_nycbuildings' visible='true' version='1' changeset='19279112' lat='40.6831976' lon='-73.9897607' />
+  <node id='2565409068' timestamp='2013-12-04T21:14:11Z' uid='1812841' user='ingalls_nycbuildings' visible='true' version='1' changeset='19279112' lat='40.6832694' lon='-73.9895874' />
+  <node id='2565409070' timestamp='2013-12-04T21:14:12Z' uid='1812841' user='ingalls_nycbuildings' visible='true' version='1' changeset='19279112' lat='40.683308' lon='-73.9896862' />
+  <node id='2565409075' timestamp='2013-12-04T21:14:12Z' uid='1812841' user='ingalls_nycbuildings' visible='true' version='1' changeset='19279112' lat='40.6833388' lon='-73.9895407' />
+  <node id='2565409085' timestamp='2013-12-04T21:14:12Z' uid='1812841' user='ingalls_nycbuildings' visible='true' version='1' changeset='19279112' lat='40.6833774' lon='-73.9896395' />
+  <node id='2565409097' timestamp='2013-12-04T21:14:12Z' uid='1812841' user='ingalls_nycbuildings' visible='true' version='1' changeset='19279112' lat='40.6834301' lon='-73.9896039' />
+  <node id='2565409104' timestamp='2013-12-04T21:14:12Z' uid='1812841' user='ingalls_nycbuildings' visible='true' version='1' changeset='19279112' lat='40.6834632' lon='-73.9896887' />
+  <way id='5675267' timestamp='2010-03-12T04:06:28Z' uid='244618' user='randyme' visible='true' version='3' changeset='4103442'>
+    <nd ref='42468453' />
+    <nd ref='42468450' />
+    <nd ref='42468449' />
+    <tag k='highway' v='residential' />
+    <tag k='name' v='Butler Street' />
+    <tag k='oneway' v='yes' />
+    <tag k='tiger:cfcc' v='A41' />
+    <tag k='tiger:county' v='Kings, NY' />
+    <tag k='tiger:name_base' v='Butler' />
+    <tag k='tiger:name_type' v='St' />
+    <tag k='tiger:reviewed' v='no' />
+    <tag k='tiger:separated' v='no' />
+    <tag k='tiger:source' v='tiger_import_dch_v0.6_20070829' />
+    <tag k='tiger:tlid' v='59075239:59075301' />
+    <tag k='tiger:upload_uuid' v='bulk_upload.pl-8a1a8f82-26aa-4f15-b5fe-a7476c89e45e' />
+    <tag k='tiger:zip_left' v='11231' />
+    <tag k='tiger:zip_right' v='11231' />
+  </way>
+  <way id='227064536' timestamp='2013-06-23T22:03:01Z' uid='689176' user='arteku' visible='true' version='1' changeset='16676732'>
+    <nd ref='42523094' />
+    <nd ref='42517472' />
+    <nd ref='42497784' />
+    <nd ref='42527865' />
+    <nd ref='42524883' />
+    <nd ref='42527868' />
+    <nd ref='42498532' />
+    <nd ref='42484013' />
+    <nd ref='42527875' />
+    <nd ref='42468453' />
+    <nd ref='42479028' />
+    <tag k='bicycle' v='yes' />
+    <tag k='cycleway' v='lane' />
+    <tag k='highway' v='residential' />
+    <tag k='name' v='Hoyt Street' />
+    <tag k='oneway' v='yes' />
+    <tag k='tiger:cfcc' v='A41' />
+    <tag k='tiger:county' v='Kings, NY' />
+    <tag k='tiger:name_base' v='Hoyt' />
+    <tag k='tiger:name_type' v='St' />
+    <tag k='tiger:reviewed' v='no' />
+    <tag k='tiger:zip_left' v='11231' />
+    <tag k='tiger:zip_right' v='11231' />
+  </way>
+  <way id='250016286' timestamp='2013-12-04T21:14:13Z' uid='1812841' user='ingalls_nycbuildings' visible='true' version='1' changeset='19279112'>
+    <nd ref='2565409068' />
+    <nd ref='2565409070' />
+    <nd ref='2565409057' />
+    <nd ref='2565409048' />
+    <nd ref='2565409034' />
+    <nd ref='2565409044' />
+    <nd ref='2565409032' />
+    <nd ref='2565409036' />
+    <nd ref='2565409104' />
+    <nd ref='2565409097' />
+    <nd ref='2565409085' />
+    <nd ref='2565409075' />
+    <nd ref='2565409068' />
+    <tag k='building' v='yes' />
+    <tag k='height' v='11.3' />
+    <tag k='nycdoitt:bin' v='3336077' />
+  </way>
+  <relation id='3017399' timestamp='2013-06-23T22:03:10Z' uid='689176' user='arteku' visible='true' version='1' changeset='16676732'>
+    <member type='way' ref='227064535' role='' />
+    <member type='way' ref='227064536' role='' />
+    <tag k='name' v='Hoyt Street' />
+    <tag k='network' v='lcn' />
+    <tag k='ref' v='Hoyt' />
+    <tag k='route' v='bicycle' />
+    <tag k='type' v='route' />
+  </relation>
+</osm>
