@@ -14,7 +14,7 @@ import threading
 con = lite.connect('changesets.sqlite')
 
 #inicializamos el geojson
-geojson = '{ "type": "FeatureCollection", "features": [ ' #] }
+geojson = '{ "type": "FeatureCollection", "features": [' #] }
 
 #Generar dos Archivos un de Ways y otro de Points
 file_ways = open('ways-h.geojson','w')
@@ -24,7 +24,16 @@ file_nodes = open('nodes-h.geojson','w')
 file_nodes.write(geojson)
 
 #optiene el historial de un nodo, 
+def get_node_history(id):
+    url = 'https://www.openstreetmap.org/api/0.6/node/%s/history' %(id)
+    tree = ElementTree.parse(urlopen(url))
+    nodes = tree.findall("node")
+    visible_version=[]
+    visible_version.append(nodes[len(nodes)-1].attrib['visible'])
+    visible_version.append(nodes[len(nodes)-1].attrib['version'])
+    return visible_version
 
+#optiene el historial de un way,     
 def get_way_history(id):
     url = 'https://www.openstreetmap.org/api/0.6/way/%s/history' %(id)
     tree = ElementTree.parse(urlopen(url))
@@ -130,13 +139,14 @@ with con:
         point = Point(lat, lon)
 
         if bbox.contains(point): #polygon.contains(point)
-            threading.Thread(target=get_data, args=(row[0],)).start()
-     
+            threat=threading.Thread(target=get_data, args=(row[0],))
+            threat.start()
+     		
 
-file_ways.write('{ "type": "Feature", "geometry": { "type": "LineString", "coordinates": [] }, "properties": { } }]}')
+#file_ways.write('{ "type": "Feature", "geometry": { "type": "LineString", "coordinates": [] }, "properties": { } }]}')
 #file_ways.close()
 
-file_nodes.write('{ "type": "Feature", "geometry": { "type": "Point", "coordinates": [] }, "properties": { } }]}')
+#file_nodes.write('{ "type": "Feature", "geometry": { "type": "Point", "coordinates": [] }, "properties": { } }]}')
 #file_nodes.close()
 toc=timeit.default_timer()
 print 'saving geojson and take %s min' %((toc - tic)/60)
