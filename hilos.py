@@ -1,6 +1,5 @@
 #!/usr/bin/python
 # -*- coding: utf-8 -*-
-
 import sqlite3 as lite
 import sys
 from urllib import urlopen
@@ -10,30 +9,22 @@ import time
 import json
 from shapely.geometry import box, Point
 import timeit
+import threading
+
 con = lite.connect('changesets.sqlite')
 
 #inicializamos el geojson
 geojson = '{ "type": "FeatureCollection", "features": [ ' #] }
 
 #Generar dos Archivos un de Ways y otro de Points
-file_ways = open('ways.geojson','w')
+file_ways = open('ways-h.geojson','w')
 file_ways.write(geojson)
 
-file_nodes = open('nodes.geojson','w')
+file_nodes = open('nodes-h.geojson','w')
 file_nodes.write(geojson)
 
 #optiene el historial de un nodo, 
-def get_node_history(id):
-    url = 'https://www.openstreetmap.org/api/0.6/node/%s/history' %(id)
-    tree = ElementTree.parse(urlopen(url))
-    nodes = tree.findall("node")
-    visible_version=[]
-    visible_version.append(nodes[len(nodes)-1].attrib['visible'])
-    visible_version.append(nodes[len(nodes)-1].attrib['version'])
-    return visible_version
 
-
-#optiene el historial de un way, 
 def get_way_history(id):
     url = 'https://www.openstreetmap.org/api/0.6/way/%s/history' %(id)
     tree = ElementTree.parse(urlopen(url))
@@ -42,7 +33,6 @@ def get_way_history(id):
     visible_version.append(ways[len(ways)-1].attrib['visible'])
     visible_version.append(ways[len(ways)-1].attrib['version'])
     return visible_version
-
 
 def get_data(id):
     url = 'http://www.openstreetmap.org/api/0.6/changeset/%s/download' %(id)
@@ -140,14 +130,13 @@ with con:
         point = Point(lat, lon)
 
         if bbox.contains(point): #polygon.contains(point)
-            get_data(row[0])
-
+            threading.Thread(target=get_data, args=(row[0],)).start()
+     
 
 file_ways.write('{ "type": "Feature", "geometry": { "type": "LineString", "coordinates": [] }, "properties": { } }]}')
-file_ways.close()
+#file_ways.close()
 
 file_nodes.write('{ "type": "Feature", "geometry": { "type": "Point", "coordinates": [] }, "properties": { } }]}')
-file_nodes.close()
+#file_nodes.close()
 toc=timeit.default_timer()
 print 'saving geojson and take %s min' %((toc - tic)/60)
-
