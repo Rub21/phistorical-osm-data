@@ -11,10 +11,11 @@ from shapely.geometry import box, Point
 import timeit
 import threading
 
+#connecion a base de datos
 con = lite.connect('changesets.sqlite')
 
 #inicializamos el geojson
-geojson = '{ "type": "FeatureCollection", "features": [' #] }
+geojson = '{ "type": "FeatureCollection", "features": ['
 
 #Generar dos Archivos un de Ways y otro de Points
 file_ways = open('ways-h.geojson','w')
@@ -23,9 +24,12 @@ file_ways.write(geojson)
 file_nodes = open('nodes-h.geojson','w')
 file_nodes.write(geojson)
 
+
+
 #optiene el historial de un nodo, 
 def get_node_history(id):
     url = 'https://www.openstreetmap.org/api/0.6/node/%s/history' %(id)
+    print url
     tree = ElementTree.parse(urlopen(url))
     nodes = tree.findall("node")
     visible_version=[]
@@ -36,6 +40,7 @@ def get_node_history(id):
 #optiene el historial de un way,     
 def get_way_history(id):
     url = 'https://www.openstreetmap.org/api/0.6/way/%s/history' %(id)
+    print url
     tree = ElementTree.parse(urlopen(url))
     ways = tree.findall("way")
     visible_version=[]
@@ -91,8 +96,9 @@ def get_data(id):
             else:
                 node['properties']['poi'] = 'yes'
                 node['geometry']['coordinates']=nodeidx[n.attrib['id']]
-                json.dump(node,file_nodes)
-                file_nodes.write(',')
+                #json.dump(node,file_nodes)
+                #file_nodes.write(',')
+                file_nodes.write(json.dumps(node)+',')
 
     #print 'mapping ways'
 
@@ -117,31 +123,45 @@ def get_data(id):
             vis_ver=get_way_history(w.attrib['id']) #optiene version y visible en un way
             way['properties']['visible'] = vis_ver[0]
             way['properties']['version'] = int(vis_ver[1])
-            json.dump(way,file_ways)
-            file_ways.write(',')
+            #json.dump(way,file_ways)
+            file_ways.write(json.dumps(way)+',')
+            #file_ways.write(',')
 
 
+
+
+     		
+def startThreads():
+	bbox = box(40.495298,-74.234619,40.998849,-73.330994)
+	#(minx, miny, maxx, maxy
+	with con:
+	    
+	    cur = con.cursor()    
+	    cur.execute("SELECT * FROM osm_changeset")
+
+	    while True:
+	        row = cur.fetchone()
+	        if row == None:
+	            break
+	        lat = (row[4] + row[6])/2
+	        lon = (row[3] + row[5])/2
+	        point = Point(lat, lon)
+
+	        if bbox.contains(point): #polygon.contains(point)
+	            threat=threading.Thread(target=get_data, args=(row[0],))
+	            threat.start()
+	            #threat.join()
+
+
+
+
+#MAIN
+#inicio de tiempo
 tic=timeit.default_timer()
 
-bbox = box(40.495298,-74.234619,40.998849,-73.330994)
-#(minx, miny, maxx, maxy
-with con:
-    
-    cur = con.cursor()    
-    cur.execute("SELECT * FROM osm_changeset")
 
-    while True:
-        row = cur.fetchone()
-        if row == None:
-            break
-        lat = (row[4] + row[6])/2
-        lon = (row[3] + row[5])/2
-        point = Point(lat, lon)
-
-        if bbox.contains(point): #polygon.contains(point)
-            threat=threading.Thread(target=get_data, args=(row[0],))
-            threat.start()
-     		
+#iniciamos a ejecutar lo hilos
+startThreads()
 
 #file_ways.write('{ "type": "Feature", "geometry": { "type": "LineString", "coordinates": [] }, "properties": { } }]}')
 #file_ways.close()

@@ -4,11 +4,12 @@ import sqlite3, sys
 import xml.parsers.expat
 from dateutil.parser import parse
 
-if (len(sys.argv) < 2):
-    raise 'Usage: stm.py changeset.osm db.sqlite'
+if (len(sys.argv) < 3):
+    raise 'Usage: stm.py changeset.osm db.sqlite osm-user'
 
 osm_filename = sys.argv[1]
 sqlite_filename = sys.argv[2]
+osm_user = sys.argv[3]
 
 print("piping %s -> %s" % (osm_filename, sqlite_filename))
 
@@ -27,7 +28,7 @@ query = """insert into osm_changeset
 
 def save(attrib):
     attrib_id = int(attrib['id'])
-    if(attrib.get('user')=='aude'):
+    if(attrib.get('user')== osm_user):
         cur.execute(query,
             (attrib_id,
             int(attrib.get('id', -1)),
