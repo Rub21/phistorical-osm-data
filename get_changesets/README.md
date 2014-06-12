@@ -1,6 +1,7 @@
 # Optener los datos Latest Weekly Changesets
 
 http://planet.openstreetmap.org/?
+
 http://planet.openstreetmap.org/planet/changesets-latest.osm.bz2
 
 
@@ -17,3 +18,5 @@ ejecutar para optener los canbios de un usuario example: OSM user = Rub21:
 
 	python GetChangeset_byuser2sqlite.py changesets-latest.osm changesets.sqlite Rub21
 
+
+al final optenemos una base de datos  `changesets.sqlite` con todos los changes de un usuario
