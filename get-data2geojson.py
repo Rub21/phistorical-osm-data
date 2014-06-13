@@ -12,7 +12,7 @@ from shapely.geometry import box, Point
 import timeit
 con = lite.connect('get_changesets/changesets.sqlite')
 
-if (len(sys.argv) < 3):
+if (len(sys.argv) < 5):
     raise 'Ejecutar: get-data2geojson minx, miny, maxx, maxy, user'
 
 minx = float(sys.argv[1])
@@ -24,10 +24,10 @@ user = sys.argv[5]
 geojson = '{ "type": "FeatureCollection", "features": [ ' #] }
 
 #Generar dos Archivos un de Ways y otro de Points
-file_ways = open('ways.geojson','w')
+file_ways = open(user + '-ways.geojson','w')
 file_ways.write(geojson)
 
-file_nodes = open('nodes.geojson','w')
+file_nodes = open(user + '-nodes.geojson','w')
 file_nodes.write(geojson)
 
 #optiene el historial de un nodo, 
@@ -117,6 +117,7 @@ def get_data(id):
             },
             "properties": { }
             }
+        way['properties']['id'] = w.attrib['id']
 
         if tags.has_key('building'):
             for n in w.iterfind('nd'):

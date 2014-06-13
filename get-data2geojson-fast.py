@@ -11,17 +11,27 @@ from shapely.geometry import box, Point
 import timeit
 import threading
 
+if (len(sys.argv) < 5):
+    raise 'Ejecutar: get-data2geojson minx, miny, maxx, maxy, user'
+
+minx = float(sys.argv[1])
+miny = float(sys.argv[2])
+maxx = float(sys.argv[3])
+maxy = float(sys.argv[4])
+user = sys.argv[5]
+
+
 #connecion a base de datos
-con = lite.connect('changesets.sqlite')
+con = lite.connect('get_changesets/changesets.sqlite')
 
 #inicializamos el geojson
 geojson = '{ "type": "FeatureCollection", "features": ['
 
 #Generar dos Archivos un de Ways y otro de Points
-file_ways = open('ways-h.geojson','w')
+file_ways = open(user + '-ways-fast.geojson','w')
 file_ways.write(geojson)
 
-file_nodes = open('nodes-h.geojson','w')
+file_nodes = open(user + '-nodes-fast.geojson','w')
 file_nodes.write(geojson)
 
 
@@ -114,6 +124,7 @@ def get_data(id):
             },
             "properties": { }
             }
+        way['properties']['id'] = w.attrib['id']
 
         if tags.has_key('building'):
             for n in w.iterfind('nd'):
@@ -132,14 +143,14 @@ def get_data(id):
 
      		
 def startThreads():
-	bbox = box(40.495298,-74.234619,40.998849,-73.330994)
+	bbox = box(minx, miny, maxx, maxy)
 	#(minx, miny, maxx, maxy
 	with con:
 	    
-	    cur = con.cursor()    
-	    cur.execute("SELECT * FROM osm_changeset")
-
-	    while True:
+	    cur = con.cursor()
+        sql = "SELECT * FROM osm_changeset where osm_user='%s';" % (user)
+        cur.execute(sql)
+        while True:
 	        row = cur.fetchone()
 	        if row == None:
 	            break
