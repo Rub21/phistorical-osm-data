@@ -1,4 +1,4 @@
-ver ways = {
+var ways = {
     "type": "FeatureCollection",
     "features": [{
         "geometry": {
