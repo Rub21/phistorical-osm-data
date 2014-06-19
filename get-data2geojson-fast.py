@@ -113,7 +113,8 @@ def get_data(id):
                 node['geometry']['coordinates']=nodeidx[n.attrib['id']]
                 #json.dump(node,file_nodes)
                 #file_nodes.write(',')
-                file_nodes.write(json.dumps(node)+',')
+                if node['properties']['version']>1:
+                    file_nodes.write(json.dumps(node)+',')
 
     #print 'mapping ways'
 
@@ -141,7 +142,8 @@ def get_data(id):
             way['properties']['version'] = int(vis_ver[1])
             way['properties']['user'] = vis_ver[2]
             #json.dump(way,file_ways)
-            file_ways.write(json.dumps(way)+',')
+            if way['properties']['version']>1:
+                file_ways.write(json.dumps(way)+',')
             #file_ways.write(',')
 
 
