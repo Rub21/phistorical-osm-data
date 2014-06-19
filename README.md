@@ -24,9 +24,11 @@ ademas que esto va agenerar dos archivos `ways.geojson` y `nodes,geojson`
 si es que decea optener de manera mas rapide ls datos podria ejecutar: esto trabaja atraves de hilos de python aun falta afinar para que funcione al 100%
 
 	python get-data2geojson-fast.py 40.495298 -74.234619 40.998849 -73.330994 Rub21
-
+    python get-data2geojson-fast.py 40.495298 -74.234619 40.998849 -73.330994 ediyes
 
 de esto tambien optendra  dos archivos `ways-fast.geojson` y `nodes-fast,geojson`
+
+
 
 
 
