@@ -105,9 +105,8 @@ def get_data(id):
             if tags.has_key('addr:housenumber'):
                 node['properties']['adrr'] = 'yes'
                 node['geometry']['coordinates']=nodeidx[n.attrib['id']]
-                json.dump(node,file_nodes)
-                file_nodes.write(',')
-
+                if node['properties']['version']>1:
+                    file_nodes.write(json.dumps(node)+',')
             else:
                 node['properties']['poi'] = 'yes'
                 node['geometry']['coordinates']=nodeidx[n.attrib['id']]
