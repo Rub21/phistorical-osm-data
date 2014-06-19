@@ -42,10 +42,12 @@ def get_node_history(id):
     print url
     tree = ElementTree.parse(urlopen(url))
     nodes = tree.findall("node")
-    visible_version=[]
-    visible_version.append(nodes[len(nodes)-1].attrib['visible'])
-    visible_version.append(nodes[len(nodes)-1].attrib['version'])
-    return visible_version
+    visible_version_user=[]
+    visible_version_user.append(nodes[len(nodes)-1].attrib['visible'])
+    visible_version_user.append(nodes[len(nodes)-1].attrib['version'])
+    visible_version_user.append(nodes[len(nodes)-1].attrib['user'])
+    #print nodes[len(nodes)-1].attrib['user']
+    return visible_version_user
 
 #optiene el historial de un way,     
 def get_way_history(id):
@@ -53,10 +55,12 @@ def get_way_history(id):
     print url
     tree = ElementTree.parse(urlopen(url))
     ways = tree.findall("way")
-    visible_version=[]
-    visible_version.append(ways[len(ways)-1].attrib['visible'])
-    visible_version.append(ways[len(ways)-1].attrib['version'])
-    return visible_version
+    visible_version_user=[]
+    visible_version_user.append(ways[len(ways)-1].attrib['visible'])
+    visible_version_user.append(ways[len(ways)-1].attrib['version'])
+    visible_version_user.append(ways[len(ways)-1].attrib['user'])
+    #print ways[len(ways)-1].attrib['user']
+    return visible_version_user
 
 def get_data(id):
     url = 'http://www.openstreetmap.org/api/0.6/changeset/%s/download' %(id)
@@ -96,6 +100,7 @@ def get_data(id):
 
             node['properties']['visible'] = vis_ver[0]
             node['properties']['version'] = int(vis_ver[1])
+            node['properties']['user'] = vis_ver[2]
             
             if tags.has_key('addr:housenumber'):
                 node['properties']['adrr'] = 'yes'
@@ -134,6 +139,7 @@ def get_data(id):
             vis_ver=get_way_history(w.attrib['id']) #optiene version y visible en un way
             way['properties']['visible'] = vis_ver[0]
             way['properties']['version'] = int(vis_ver[1])
+            way['properties']['user'] = vis_ver[2]
             #json.dump(way,file_ways)
             file_ways.write(json.dumps(way)+',')
             #file_ways.write(',')
