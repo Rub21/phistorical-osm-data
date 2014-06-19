@@ -1,0 +1,185 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <meta charset=utf-8 />
+    <title>L.mapbox.simplestyle with L.geoJson</title>
+    <meta name='viewport' content='initial-scale=1,maximum-scale=1,user-scalable=no' />
+    <script src='https://api.tiles.mapbox.com/mapbox.js/v1.6.4/mapbox.js'></script>
+    <link href='https://api.tiles.mapbox.com/mapbox.js/v1.6.4/mapbox.css' rel='stylesheet' />
+
+    <script src='../aude-ways-fast.geojson'></script>
+    <script src='../aude-nodes-fast.geojson'></script>
+    <style>
+    body {
+        margin:0;
+        padding:0;
+    }
+    #map {
+        position:absolute;
+        top:0;
+        bottom:0;
+        width:100%;
+    }
+    .legend {
+        font:bold 12px/20px'Helvetica', sans-serif;
+        background:rgba(255, 255, 255, 0.9);
+        position: absolute;
+        bottom: 10px;
+        right:5px;
+        z-index: 100;
+        padding:10px;
+        width:80px;
+        border-radius:3px;
+    }
+    .legend label, .legend span {
+        display:block;
+        float:left;
+        height:15px;
+        width:20%;
+        text-align:center;
+       
+        color:#808080;
+   
+    }
+     .legend img{
+      height: 35px;
+     }
+    </style>
+</head>
+
+<body>
+
+
+    <div id='map'></div>
+    <div class="legend">
+
+        <h3>
+            <strong>Buildings</strong>
+        </h3>
+         <span style='color:#0F0'>■</span>New
+        <br />
+        <span style='color:#0066FF'>■</span>Changed
+        <br />
+        <span style='color:#fc0303'>■</span>Removed
+        <br />
+
+        <h3>
+            <strong>POIs</strong>
+        </h3>
+        <span >
+            <img src="http://a.tiles.mapbox.com/v3/marker/pin-s-commercial+0F0.png" />
+        </span>New
+        <br />
+        <span >
+            <img src="http://a.tiles.mapbox.com/v3/marker/pin-s-commercial+0066FF.png" />
+        </span>Changed
+        <br />
+        <span >
+            <img src="http://a.tiles.mapbox.com/v3/marker/pin-s-commercial+fc4353.png" />
+        </span>Removed
+
+
+        <h3>
+
+
+            <strong>Address</strong>
+        </h3>
+       <span >
+            <img src="http://a.tiles.mapbox.com/v3/marker/pin-s+0F0.png" />
+        </span>New
+        <br />
+        <span >
+            <img src="http://a.tiles.mapbox.com/v3/marker/pin-s+0066FF.png" />
+        </span>Changed
+        <br />
+        <span >
+            <img src="http://a.tiles.mapbox.com/v3/marker/pin-s+fc4353.png" />
+        </span>Removed
+
+    </div>
+    <script>
+    for (i = 0; i < ways.features.length; i++) {
+        ways.features[i].properties['stroke-width'] = 3;
+        if (ways.features[i].properties.visible == "false") {
+            ways.features[i].properties['stroke'] = "#fc4353";
+        } else {
+            if (ways.features[i].properties.version == 1) {
+                ways.features[i].properties['stroke'] = " #0F0";
+            } else {
+                ways.features[i].properties['stroke'] = "#0066FF";
+            }
+        }
+    }
+
+    for (i = 0; i < nodes.features.length; i++) {
+        if (nodes.features[i].properties.visible == "false") {
+            nodes.features[i].properties['marker-color'] = "#fc4353";
+            nodes.features[i].properties['marker-size'] = "small";
+        } else {
+            if (nodes.features[i].properties.version == 1) {
+
+                nodes.features[i].properties['marker-color'] = "#0F0";
+                nodes.features[i].properties['marker-size'] = "small";
+            } else {
+
+                nodes.features[i].properties['marker-color'] = "#0066FF";
+                nodes.features[i].properties['marker-size'] = "small";
+            }
+        }
+        if (nodes.features[i].properties.poi == "yes") {
+            nodes.features[i].properties['marker-symbol'] = "commercial";
+        }
+
+    }
+    console.log(ways)
+    console.log(nodes)
+    var map = L.mapbox.map('map', 'examples.map-i86nkdio')
+        .setView([40.72187, -73.99786], 15);
+
+    //WAYS
+    var ways_layer = L.mapbox.featureLayer().addTo(map);
+    ways_layer.setGeoJSON(ways);
+    ways_layer.on('mouseover', function(e) {
+        var marker = e.layer;
+        var feature = marker.feature;
+        var popupContent = '';
+        if (feature.properties.visible == "false") {
+            popupContent = '<h4>Deleted by:' + feature.properties.user + '<\/h4>';
+        } else {
+            if (feature.properties.version == 1) {
+                popupContent = '<h4>Created by:' + feature.properties.user + '<\/h4>';
+            } else {
+                popupContent = '<h4>Update by:' + feature.properties.user + '<\/h4>';
+            }
+        }
+        popupContent = popupContent + "<a target='_blank' href='https://www.openstreetmap.org/way/" + feature.properties.id + "/history' >See on OSM<\/a>"
+        marker.bindPopup(popupContent, {
+            closeButton: false
+            // minWidth: 320
+        });
+    });
+
+    //NODES
+    var nodes_layer = L.mapbox.featureLayer(nodes).addTo(map);
+    nodes_layer.eachLayer(function(layer) {
+        var content = '';
+        if (layer.feature.properties.visible == "false") {
+            content = '<h4>Deleted by:' + layer.feature.properties.user + '<\/h4>';
+        } else {
+            if (layer.feature.properties.version == 1) {
+                content = '<h4>Created by:' + layer.feature.properties.user + '<\/h4>';
+            } else {
+                content = '<h4>Update by:' + layer.feature.properties.user + '<\/h4>';
+            }
+        }
+        content = content + "<a target='_blank' href='https://www.openstreetmap.org/node/" + layer.feature.properties.id + "/history' >See on OSM<\/a>"
+        layer.bindPopup(content);
+
+    });
+    </script>
+
+
+</body>
+
+</html>
