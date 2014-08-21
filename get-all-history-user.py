@@ -103,7 +103,7 @@ def get_data(id):
         for p in n.iterfind('tag'):
             tags[p.attrib['k']] = p.attrib['v']
 
-        if len(tags)>0:
+        if tags.has_key('amenity')  or tags.has_key('leisure') or tags.has_key('tourism') or  tags.has_key('shop'):
             node = {
                 "type": "Feature",
                 "geometry": {
@@ -131,7 +131,7 @@ def get_data(id):
         for t in w.iterfind('tag'):
             tags[t.attrib['k']] = t.attrib['v']
 
-        if len(tags)>0:
+        if tags.has_key('amenity')  or tags.has_key('leisure') or tags.has_key('tourism') or  tags.has_key('shop'):
             way = {
                 "type": "Feature",
                 "geometry": {
@@ -160,7 +160,7 @@ def get_data(id):
         for t in r.iterfind('tag'):
             tags[t.attrib['k']] = t.attrib['v']
 
-        if len(tags)>0:
+        if tags.has_key('amenity')  or tags.has_key('leisure') or tags.has_key('tourism') or  tags.has_key('shop'):
             relation = {
                 "type": "Feature",
                 "geometry": {
