@@ -213,7 +213,7 @@ tic=timeit.default_timer()
 count = 1
 with con:
     cur = con.cursor()  
-    sql = "SELECT changeset_id FROM osm_changeset WHERE osm_user='%s' ORDER BY changeset_id DESC;" % (user)
+    sql = "SELECT changeset_id FROM osm_changeset WHERE osm_user='%s' ORDER BY changeset_id ASC;" % (user)
     cur.execute(sql)
 
     while True:
