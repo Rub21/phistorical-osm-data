@@ -40,9 +40,9 @@ def save(attrib):
             float(attrib.get('max_lat', 0)),
             int(parse(attrib["created_at"]).strftime('%s')),
             int(attrib['num_changes'])))
-        if (attrib_id % 100 == 0):
-            conn.commit()
-            print("%d done" % int(attrib['id']))
+        #if (attrib_id % 10 == 0):
+        conn.commit()
+        print("%d done" % int(attrib['id']))
 
 def start_element(name, attrs):
     if name == 'changeset':
