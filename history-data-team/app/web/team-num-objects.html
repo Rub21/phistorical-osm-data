@@ -152,7 +152,7 @@
                 .style("opacity", 0);
 
 
-        d3.csv("data_1.csv", function(error, data) {
+        d3.csv("team-num-objects.csv", function(error, data) {
             data.forEach(function(d) {
                 d.date = parseDate(d.date);
                 //d.v1 = +d.v1;
