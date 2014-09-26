@@ -68,7 +68,7 @@
     <script>
         var margin = {top: 30, right: 70, bottom: 30, left: 50};
         var width = 1200 - margin.left - margin.right;
-        var height = 800 - margin.top - margin.bottom;
+        var height = 500 - margin.top - margin.bottom;
 
         var parseDate = d3.time.format("%Y-%m").parse;
 
@@ -175,27 +175,27 @@
             svg.append("path")
                     .attr("class", "line")
                     .style("stroke", "#0171C5")
-                    .style("stroke-width", 2)
+                    .style("stroke-width", 1.2)
                     .attr("d", valueline_Rub21(data));
             svg.append("path")
                     .attr("class", "line")
                     .style("stroke", "#FF0")
-                    .style("stroke-width", 2)
+                    .style("stroke-width", 1.2)
                     .attr("d", valueline_ediyes(data));
             svg.append("path")
                     .attr("class", "line")
                     .style("stroke", "#0F0")
-                    .style("stroke-width", 2)
+                    .style("stroke-width", 1.2)
                     .attr("d", valueline_Luis36995(data));
             svg.append("path")
                     .attr("class", "line")
                     .style("stroke", "#CC181E")
-                    .style("stroke-width", 2)
+                    .style("stroke-width", 1.2)
                     .attr("d", valueline_RichRico(data));
             svg.append("path")
                     .attr("class", "line")
                     .style("stroke", "#00FFFF")
-                    .style("stroke-width", 2)
+                    .style("stroke-width", 1.2)
                     .attr("d", valueline_dannykath(data));
             svg.append("g")			// Add the X Axis
                     .attr("class", "x axis")
@@ -220,36 +220,105 @@
                     .attr("dy", "1em")
                     .style("text-anchor", "middle")
                     .text("Number Objects Modified");
-            
-            
+
+
             svg.append("text")                  //Add title of Graph
                     .attr("x", (width / 2))
                     .attr("y", 0 - (margin.top / 2) + 15)
                     .attr("text-anchor", "middle")
                     .style("font-size", "24px")
                     //.style("text-decoration", "underline")
-                    .text(" Progress of Data-Team per month");
-            /*   svg.append("text")
-             .attr("transform", function() {
-             // return "translate(" + (width - 10) + "," + y(data[data.length - 1].v1 - 5) + ")";//regresa el utimo elemento
-             return "translate(" + (0 - margin.left + 20) + "," + y(data[0].v1) + ")";//regresa el primer  elemeto
-             
-             })
-             .attr("dy", ".35em")
-             .attr("text-anchor", "start")
-             .style("fill", "steelblue")
-             .style("font-weight", "bold")
-             .text("v = 1");
-             
-             svg.append("text")
-             .attr("transform", "translate(" + (0 - margin.left + 20) + "," + y(data[0].vx) + ")")//regresa el utimo elemeto
-             .attr("dy", ".35em")
-             .attr("text-anchor", "start")
-             .style("fill", "#55aaaa")
-             .style("font-weight", "bold")
-             .text("v > 1");
-             
-             */
+                    .text("Number of Objects Modified by Data-Team per month");
+
+
+            svg.append("rect")
+                    .attr("transform", function() {
+                        // return "translate(" + (width - 10) + "," + y(data[data.length - 1].v1 - 5) + ")";//regresa el utimo elemento
+                        return "translate(" + (0 - margin.left + 150) + "," + (0 - margin.top + 100) + ")";//regresa el primer  elemeto
+                    })
+                    .attr("width", 10)
+                    .attr("height", 10)
+                    .attr("dy", ".35em")
+                    .attr("text-anchor", "start")
+                    .style("fill", "#0171C5");
+
+            svg.append("text")
+                    .attr("transform", function() {
+                        // return "translate(" + (width - 10) + "," + y(data[data.length - 1].v1 - 5) + ")";//regresa el utimo elemento
+                        return "translate(" + (0 - margin.left + 165) + "," + (0 - margin.top + 105) + ")";//regresa el primer  elemeto
+                    })
+                    .attr("dy", ".35em")
+                    .attr("text-anchor", "start")
+                    .style("fill", "#0171C5")
+                    .text("Rub21");
+
+            svg.append("rect")
+                    .attr("transform", function() {
+                        return "translate(" + (0 - margin.left + 150) + "," + (0 - margin.top + 115) + ")";
+                    })
+                    .attr("width", 10)
+                    .attr("height", 10)
+                    .attr("dy", ".35em")
+                    .attr("text-anchor", "start")
+                    .style("fill", "#FF0");
+
+            svg.append("text")
+                    .attr("transform", "translate(" + (0 - margin.left + 165) + "," + (0 - margin.top + 120) + ")")
+                    .attr("dy", ".35em")
+                    .attr("text-anchor", "start")
+                    .style("fill", "#FF0")
+                    .text("ediyes");
+
+            svg.append("rect")
+                    .attr("transform", function() {
+                        return "translate(" + (0 - margin.left + 150) + "," + (0 - margin.top + 130) + ")";
+                    })
+                    .attr("width", 10)
+                    .attr("height", 10)
+                    .attr("dy", ".35em")
+                    .attr("text-anchor", "start")
+                    .style("fill", "#0F0");
+
+            svg.append("text")
+                    .attr("transform", "translate(" + (0 - margin.left + 165) + "," + (0 - margin.top + 135) + ")")
+                    .attr("dy", ".35em")
+                    .attr("text-anchor", "start")
+                    .style("fill", "#0F0")
+                    .text("Luis36995");
+
+            svg.append("rect")
+                    .attr("transform", function() {
+                        return "translate(" + (0 - margin.left + 150) + "," + (0 - margin.top + 145) + ")";
+                    })
+                    .attr("width", 10)
+                    .attr("height", 10)
+                    .attr("dy", ".35em")
+                    .attr("text-anchor", "start")
+                    .style("fill", "#CC181E");
+
+            svg.append("text")
+                    .attr("transform", "translate(" + (0 - margin.left + 165) + "," + (0 - margin.top + 150) + ")")
+                    .attr("dy", ".35em")
+                    .attr("text-anchor", "start")
+                    .style("fill", "#CC181E")
+                    .text("RichRico");
+
+            svg.append("rect")
+                    .attr("transform", function() {
+                        return "translate(" + (0 - margin.left + 150) + "," + (0 - margin.top + 160) + ")";
+                    })
+                    .attr("width", 10)
+                    .attr("height", 10)
+                    .attr("dy", ".35em")
+                    .attr("text-anchor", "start")
+                    .style("fill", "#00FFFF");
+
+            svg.append("text")
+                    .attr("transform", "translate(" + (0 - margin.left + 165) + "," + (0 - margin.top + 165) + ")")
+                    .attr("dy", ".35em")
+                    .attr("text-anchor", "start")
+                    .style("fill", "#00FFFF")
+                    .text("dannykath");
             /*
              
              svg.selectAll("dot_Rub21")//agregando puntitos para datos de version =1
