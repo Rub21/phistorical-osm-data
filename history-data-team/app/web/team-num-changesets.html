@@ -64,7 +64,7 @@
 </style>
 <body>
     <script src="http://d3js.org/d3.v3.min.js"></script>
-
+<script src="js/d3.v3.min.js"></script>
     <script>
         var margin = {top: 30, right: 70, bottom: 30, left: 50};
         var width = 1200 - margin.left - margin.right;
@@ -219,7 +219,7 @@
                     .attr("x", 0 - (height / 2))
                     .attr("dy", "1em")
                     .style("text-anchor", "middle")
-                    .text("Number Objects Modified");
+                    .text("Numbers of changesets");
 
 
             svg.append("text")                  //Add title of Graph
@@ -228,7 +228,7 @@
                     .attr("text-anchor", "middle")
                     .style("font-size", "24px")
                     //.style("text-decoration", "underline")
-                    .text("Number of Objects Modified by Data-Team per month");
+                    .text("Number of changesets by Data-Team per month");
 
 
             svg.append("rect")
