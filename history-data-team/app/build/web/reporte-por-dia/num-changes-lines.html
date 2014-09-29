@@ -63,18 +63,14 @@
 
 </style>
 <body>
-    <script src="http://d3js.org/d3.v3.min.js"></script>
-
+    
+        <script src="http://d3js.org/d3.v3.min.js"></script>
     <script>
         var margin = {top: 30, right: 70, bottom: 30, left: 50};
-        var width = 1200 - margin.left - margin.right;
+        var width = 1600 - margin.left - margin.right;
         var height = 500 - margin.top - margin.bottom;
 
-        var parseDate = d3.time.format("%Y-%m").parse;
-
-        //format para toltip
-        var formatTime = d3.time.format("%B %Y");
-
+        var parseDate = d3.time.format("%Y-%m-%d").parse;
 
         var x = d3.time.scale()
                 .range([0, width]);
@@ -152,7 +148,7 @@
                 .style("opacity", 0);
 
 
-        d3.csv("team-num-changesets.csv", function(error, data) {
+        d3.csv("data.csv", function(error, data) {
             data.forEach(function(d) {
                 d.date = parseDate(d.date);
                 //d.v1 = +d.v1;
@@ -180,7 +176,7 @@
             svg.append("path")
                     .attr("class", "line")
                     .style("stroke", "#FF0")
-                    .style("stroke-width", 1.2)
+                    .style("stroke-width", 5)
                     .attr("d", valueline_ediyes(data));
             svg.append("path")
                     .attr("class", "line")
@@ -219,7 +215,7 @@
                     .attr("x", 0 - (height / 2))
                     .attr("dy", "1em")
                     .style("text-anchor", "middle")
-                    .text("Numbers of changesets");
+                    .text("Number Objects Modified");
 
 
             svg.append("text")                  //Add title of Graph
@@ -228,7 +224,7 @@
                     .attr("text-anchor", "middle")
                     .style("font-size", "24px")
                     //.style("text-decoration", "underline")
-                    .text("Number of changesets by Data-Team per month");
+                    .text("Number of Objects Modified by Data-Team per day");
 
 
             svg.append("rect")
@@ -319,232 +315,7 @@
                     .attr("text-anchor", "start")
                     .style("fill", "#00FFFF")
                     .text("dannykath");
-            /*
-             
-             svg.selectAll("dot_Rub21")//agregando puntitos para datos de version =1
-             .data(data)                    
-             .enter()
-             .append("circle")
-             .attr("r", 1.5)
-             .attr("cx", function(d) {
-             return x(d.date);
-             })
-             .attr("cy", function(d) {
-             return y(d.Rub21);
-             })
-             .style("fill", "SteelBlue");
-             
-             
-             svg.selectAll("dot_ediyes")//agregando puntitos para datos de version >1
-             .data(data)                  
-             .enter()
-             .append("circle")
-             .attr("r", 1.5)
-             .attr("cx", function(d) {
-             return x(d.date);
-             })
-             .attr("cy", function(d) {
-             return y(d.ediyes);
-             })
-             .style("fill", "#55aaaa");
-             
-             
-             
-             svg.selectAll("dot_Luis36995")//agregando puntitos para datos de version >1
-             .data(data)               
-             .enter()
-             .append("circle")
-             .attr("r", 1.5)
-             .attr("cx", function(d) {
-             return x(d.date);
-             })
-             .attr("cy", function(d) {
-             return y(d.Luis36995);
-             })
-             .style("fill", "#55aaaa");
-             
-             
-             
-             
-             svg.selectAll("dot_RichRico")//agregando puntitos para datos de version >1
-             .data(data)
-             .enter()
-             .append("circle")
-             .attr("r", 1.5)
-             .attr("cx", function(d) {
-             return x(d.date);
-             })
-             .attr("cy", function(d) {
-             return y(d.RichRico);
-             })
-             .style("fill", "#CC181E");
-             
-             
-             
-             svg.selectAll("dot_dannykath")//agregando puntitos para datos de version >1
-             .data(data)
-             .enter()
-             .append("circle")
-             .attr("r", 1.5)
-             .attr("cx", function(d) {
-             return x(d.date);
-             })
-             .attr("cy", function(d) {
-             return y(d.dannykath);
-             })
-             .style("fill", "#55aaaa");
-             
-             
-             
-             
-             
-             
-             svg.selectAll("dot_Rub21")//insertar los toltip en el grafico para version 1
-             .data(data)
-             .enter().append("circle")
-             .attr("r", 5)
-             .attr("cx", function(d) {
-             return x(d.date);
-             })
-             .attr("cy", function(d) {
-             return y(d.Rub21);
-             })
-             
-             .style("fill", "SteelBlue")
-             .style("opacity", 0)
-             .on("mouseover", function(d) {
-             div.transition()
-             .duration(200)
-             .style("opacity", .9);
-             div.html(formatTime(d.date) + "<br/><strong>Num : " + d.Rub21 + "</strong>")
-             .style("left", (d3.event.pageX) + "px")
-             .style("top", (d3.event.pageY - 28) + "px");
-             })
-             .on("mouseout", function(d) {
-             div.transition()
-             .duration(500)
-             .style("opacity", 0);
-             });
-             
-             
-             
-             
-             
-             
-             
-             
-             svg.selectAll("dot_ediyes")//insertar los toltip en el grafico para version >1
-             .data(data)
-             .enter().append("circle")
-             .attr("r", 3)
-             .attr("cx", function(d) {
-             return x(d.date);
-             })
-             .attr("cy", function(d) {
-             return y(d.ediyes);
-             })
-             .style("fill", "#55aaaa")
-             .style("opacity", 0)
-             .on("mouseover", function(d) {
-             div.transition()
-             .duration(200)
-             .style("opacity", .9);
-             div.html(formatTime(d.date) + "<br/><strong>Num : " + d.ediyes + "</strong>")
-             .style("left", (d3.event.pageX) + "px")
-             .style("top", (d3.event.pageY - 28) + "px");
-             })
-             .on("mouseout", function(d) {
-             div.transition()
-             .duration(500)
-             .style("opacity", 0);
-             });
-             
-             
-             svg.selectAll("dot_Luis36995")//insertar los toltip en el grafico para version >1
-             .data(data)
-             .enter().append("circle")
-             .attr("r", 3)
-             .attr("cx", function(d) {
-             return x(d.date);
-             })
-             .attr("cy", function(d) {
-             return y(d.Luis36995);
-             })
-             .style("fill", "#55aaaa")
-             .style("opacity", 0)
-             .on("mouseover", function(d) {
-             div.transition()
-             .duration(200)
-             .style("opacity", .9);
-             div.html(formatTime(d.date) + "<br/><strong>Num : " + d.Luis36995 + "</strong>")
-             .style("left", (d3.event.pageX) + "px")
-             .style("top", (d3.event.pageY - 28) + "px");
-             })
-             .on("mouseout", function(d) {
-             div.transition()
-             .duration(500)
-             .style("opacity", 0);
-             });
-             
-             
-             
-             
-             svg.selectAll("dot_RichRico")//insertar los toltip en el grafico para version >1
-             .data(data)
-             .enter().append("circle")
-             .attr("r", 3)
-             .attr("cx", function(d) {
-             return x(d.date);
-             })
-             .attr("cy", function(d) {
-             return y(d.RichRico);
-             })
-             .style("fill", "#55aaaa")
-             .style("opacity", 0)
-             .on("mouseover", function(d) {
-             div.transition()
-             .duration(200)
-             .style("opacity", .9);
-             div.html(formatTime(d.date) + "<br/><strong>Num : " + d.RichRico + "</strong>")
-             .style("left", (d3.event.pageX) + "px")
-             .style("top", (d3.event.pageY - 28) + "px");
-             })
-             .on("mouseout", function(d) {
-             div.transition()
-             .duration(500)
-             .style("opacity", 0);
-             });
-             
-             
-             
-             svg.selectAll("dot_dannykath")//insertar los toltip en el grafico para version >1
-             .data(data)
-             .enter().append("circle")
-             .attr("r", 3)
-             .attr("cx", function(d) {
-             return x(d.date);
-             })
-             .attr("cy", function(d) {
-             return y(d.dannykath);
-             })
-             .style("fill", "#55aaaa")
-             .style("opacity", 0)
-             .on("mouseover", function(d) {
-             div.transition()
-             .duration(200)
-             .style("opacity", .9);
-             div.html(formatTime(d.date) + "<br/><strong>Num : " + d.dannykath + "</strong>")
-             .style("left", (d3.event.pageX) + "px")
-             .style("top", (d3.event.pageY - 28) + "px");
-             })
-             .on("mouseout", function(d) {
-             div.transition()
-             .duration(500)
-             .style("opacity", 0);
-             });
-             
-             */
-
+   
 
         });
 
