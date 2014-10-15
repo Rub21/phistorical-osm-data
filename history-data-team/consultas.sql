@@ -194,3 +194,8 @@ SELECT  substr( datetime(closed_at, 'unixepoch'),0,8), count(*)   FROM osm_chang
 "2014-09","3217"
 
 SELECT  substr( datetime(closed_at, 'unixepoch'),0,11), sum(num_changes)   FROM osm_changeset WHERE osm_user='Rub21'  and  closed_at > 1408060800  group by substr( datetime(closed_at, 'unixepoch'),0,11)  order by substr( datetime(closed_at, 'unixepoch'),0,11) 
+
+
+
+
+SELECT substr( datetime(closed_at, 'unixepoch'),0,8) ,  count(num_changes)  FROM osm_changeset   group by substr( datetime(closed_at, 'unixepoch'),0,8)  order by substr( datetime(closed_at, 'unixepoch'),0,8)  
